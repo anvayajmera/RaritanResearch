@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- to add new report: copy research-report div block, update pdf paths, titles, and content -->
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Research - Raritan Research Group</title>
+  <meta name="description" content="View our latest investment research reports and market analysis">
+  <meta name="keywords" content="investment research, equity research, financial reports, market analysis, DCF analysis">
+
+  <!-- Favicons -->
+  <link href="rgfavi.jpg" rel="icon">
+  <link href="rgfavi.jpg" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- vendor files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+
+  <!-- main css -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <!-- custom styling for research page -->
+  <style>
+    :root {
+      --accent-color: #6c757d;
+      --accent-color-rgb: 108, 117, 125;
+      --grey-primary: #6c757d;
+      --grey-secondary: #868e96;
+      --grey-light: #f8f9fa;
+      --grey-dark: #495057;
+      --grey-darker: #343a40;
+    }
+    
+    /* remove blue background from logo */
+    .header .logo {
+      background: transparent !important;
+      padding: 10px 0 !important;
+    }
+    
+    .research-report {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+      margin-bottom: 3rem;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid rgba(var(--accent-color-rgb), 0.1);
+    }
+    
+    .research-report:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 48px rgba(var(--accent-color-rgb), 0.15);
+    }
+    
+    .report-header {
+      background: linear-gradient(135deg, var(--grey-primary) 0%, var(--grey-dark) 100%);
+      color: white;
+      padding: 2rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .report-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100px;
+      height: 100px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      transform: translate(30px, -30px);
+    }
+    
+    .report-meta {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    
+    .research-tag {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.25);
+      color: white;
+      padding: 0.4rem 1rem;
+      border-radius: 25px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .report-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 1rem 0 0.5rem 0;
+      line-height: 1.3;
+      color: white !important;
+    }
+    
+    .report-date {
+      opacity: 0.9;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .report-content {
+      padding: 2.5rem;
+    }
+    
+    .report-description {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #555;
+      margin-bottom: 2rem;
+    }
+    
+    .report-highlights {
+      background: rgba(var(--accent-color-rgb), 0.05);
+      border-left: 4px solid var(--accent-color);
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: 0 8px 8px 0;
+    }
+    
+    .report-highlights h5 {
+      color: var(--accent-color);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    /* pdf viewer styling */
+    .pdf-viewer {
+      margin: 2rem 0;
+      border: 1px solid var(--grey-secondary);
+      border-radius: 8px;
+      overflow: hidden;
+      height: 600px;
+    }
+
+    .pdf-viewer-header {
+      background: var(--grey-primary);
+      color: white;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .pdf-viewer-header h6 {
+      color: white !important;
+      margin: 0;
+    }
+
+    .pdf-viewer iframe {
+      width: 100%;
+      height: calc(100% - 60px);
+      border: none;
+    }
+
+    .pdf-controls {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .pdf-controls button {
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .pdf-controls button:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+    
+    .report-actions {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid #eee;
+    }
+    
+    .action-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--grey-primary);
+      color: white;
+      text-decoration: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .btn-download:hover {
+      background: var(--grey-dark);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(108, 117, 125, 0.3);
+    }
+    
+    .btn-open {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: transparent;
+      color: var(--grey-primary);
+      text-decoration: none;
+      padding: 0.75rem 1.5rem;
+      border: 2px solid var(--grey-primary);
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-open:hover {
+      background: var(--grey-primary);
+      color: white;
+      transform: translateY(-2px);
+    }
+    
+    .report-stats {
+      display: flex;
+      gap: 2rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+    
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    /* apply grey theme to buttons */
+    .btn-primary {
+      background: var(--grey-primary) !important;
+      border-color: var(--grey-primary) !important;
+    }
+
+    .btn-primary:hover {
+      background: var(--grey-dark) !important;
+      border-color: var(--grey-dark) !important;
+    }
+    
+    @media (max-width: 768px) {
+      .report-header {
+        padding: 1.5rem;
+      }
+      
+      .report-content {
+        padding: 1.5rem;
+      }
+      
+      .report-title {
+        font-size: 1.4rem;
+      }
+      
+      .action-buttons {
+        width: 100%;
+      }
+      
+      .btn-download, .btn-open {
+        flex: 1;
+        justify-content: center;
+      }
+
+      .pdf-viewer {
+        height: 400px;
+      }
+    }
+  </style>
+</head>
+
+<body class="research-page">
+
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-end">
+
+      <a href="index.html" class="logo d-flex align-items-center me-auto">
+        <img src="logo.png" alt="Raritan Research Group" style="height: 60px;">
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="research.html" class="active">Research</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+
+    <!-- Research Section -->
+    <section class="section">
+      <div class="container" data-aos="fade-up">
+        
+        <div class="row">
+          <div class="col-lg-10 mx-auto text-center mb-5">
+            <h2 class="section-title" style="color: var(--accent-color); font-weight: 700; margin-bottom: 1rem;">Our Research Reports</h2>
+            <p class="lead" style="color: #666; font-size: 1.1rem;">Explore our latest investment research reports, market analysis, and financial modeling work. Our student analysts produce professional-grade research across various industries and sectors.</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-10 mx-auto">
+            
+
+
+
+
+
+            
+            <!-- Research Report 1 -->
+            <div class="research-report" data-aos="fade-up" data-aos-delay="100">
+              <div class="report-header">
+                <div class="report-meta">
+                  <span class="research-tag">Equity Research</span>
+                  <span class="research-tag">Technology</span>
+                  <span class="research-tag">Gaming</span>
+                </div>
+                <h3 class="report-title">DraftKings Inc. (DKNG) - Comprehensive Valuation Analysis</h3>
+                <div class="report-date">
+                  <i class="bi bi-calendar3"></i>
+                  Published July 15, 2025
+                </div>
+              </div>
+              
+              <div class="report-content">
+                <p class="report-description">
+                  Our comprehensive DCF analysis of DraftKings reveals significant undervaluation relative to current market price. This 45-page report incorporates sports betting market growth projections, user acquisition cost trends, state-by-state regulatory landscape analysis, and competitive positioning against FanDuel and BetMGM.
+                </p>
+                
+                <div class="report-highlights">
+                  <h5>Key Findings:</h5>
+                  <ul class="mb-0">
+                    <li>12-month price target of $52.00 (35% upside from current levels)</li>
+                    <li>Revenue CAGR of 28% projected through 2027</li>
+                    <li>Path to profitability by Q4 2025 driven by marketing efficiency gains</li>
+                    <li>Strong competitive moat in key markets like New York and Pennsylvania</li>
+                  </ul>
+                </div>
+
+                <div class="pdf-viewer">
+                  <div class="pdf-viewer-header">
+                    <h6 style="margin: 0;">DraftKings Valuation Report</h6>
+                    <div class="pdf-controls">
+                      <button onclick="document.getElementById('pdf1').src = document.getElementById('pdf1').src">Refresh</button>
+                      <button onclick="window.open('assets/reports/draftkings-report.pdf')">Full Screen</button>
+                    </div>
+                  </div>
+                  <iframe id="pdf1" src="assets/reports/draftkings-report.pdf" type="application/pdf"></iframe>
+                </div>
+                
+                <div class="report-actions">
+                  <div class="action-buttons">
+                    <a href="https://www.adobe.com/support/products/enterprise/knowledgecenter/media/c4611_sample_explain.pdf" target="_blank" class="btn-open">
+                      <i class="bi bi-box-arrow-up-right"></i>
+                      Open Report
+                    </a>
+                    <a href="assets/reports/draftkings-report.pdf" class="btn-download" download>
+                      <i class="bi bi-download"></i>
+                      Download PDF
+                    </a>
+                  </div>
+                  <div class="report-stats">
+                    <span class="stat-item">
+                      <i class="bi bi-file-earmark-pdf"></i>
+                      45 pages
+                    </span>
+                    <span class="stat-item">
+                      <i class="bi bi-graph-up"></i>
+                      DCF Model Included
+                    </span>
+                    <span class="stat-item">
+                      <i class="bi bi-download"></i>
+                      234 downloads
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+            <!-- Research Report 2 -->
+            <div class="research-report" data-aos="fade-up" data-aos-delay="200">
+              <div class="report-header">
+                <div class="report-meta">
+                  <span class="research-tag">Sector Analysis</span>
+                  <span class="research-tag">Healthcare</span>
+                  <span class="research-tag">REITs</span>
+                </div>
+                <h3 class="report-title">Healthcare REIT Sector Outlook: Demographics Meet Opportunity</h3>
+                <div class="report-date">
+                  <i class="bi bi-calendar3"></i>
+                  Published June 28, 2025
+                </div>
+              </div>
+              
+              <div class="report-content">
+                <p class="report-description">
+                  Deep-dive analysis into the healthcare real estate investment trust sector, examining how demographic trends, regulatory changes, and post-pandemic healthcare delivery evolution create compelling investment opportunities in senior housing, medical office buildings, and specialized care facilities.
+                </p>
+                
+                <div class="report-highlights">
+                  <h5>Investment Thesis:</h5>
+                  <ul class="mb-0">
+                    <li>Baby Boomer demographic wave driving 65+ population growth of 3.2% annually</li>
+                    <li>Medical office properties showing 94% occupancy rates post-COVID</li>
+                    <li>Senior housing recovery accelerating with 89% occupancy by Q2 2025</li>
+                    <li>Top picks: Welltower (WELL), Ventas (VTR), and Healthcare Trust of America (HTA)</li>
+                  </ul>
+                </div>
+
+                <div class="pdf-viewer">
+                  <div class="pdf-viewer-header">
+                    <h6 style="margin: 0;">Healthcare REIT Sector Report</h6>
+                    <div class="pdf-controls">
+                      <button onclick="document.getElementById('pdf2').src = document.getElementById('pdf2').src">Refresh</button>
+                      <button onclick="window.open('assets/reports/healthcare-reit-report.pdf')">Full Screen</button>
+                    </div>
+                  </div>
+                  <iframe id="pdf2" src="assets/reports/healthcare-reit-report.pdf" type="application/pdf"></iframe>
+                </div>
+                
+                <div class="report-actions">
+                  <div class="action-buttons">
+                    <a href="https://www.adobe.com/support/products/enterprise/knowledgecenter/media/c4611_sample_explain.pdf" target="_blank" class="btn-open">
+                      <i class="bi bi-box-arrow-up-right"></i>
+                      Open Report
+                    </a>
+                    <a href="assets/reports/healthcare-reit-report.pdf" class="btn-download" download>
+                      <i class="bi bi-download"></i>
+                      Download PDF
+                    </a>
+                  </div>
+                  <div class="report-stats">
+                    <span class="stat-item">
+                      <i class="bi bi-file-earmark-pdf"></i>
+                      32 pages
+                    </span>
+                    <span class="stat-item">
+                      <i class="bi bi-bar-chart"></i>
+                      Comp Analysis
+                    </span>
+                    <span class="stat-item">
+                      <i class="bi bi-download"></i>
+                      187 downloads
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Research Report 3 -->
+            <div class="research-report" data-aos="fade-up" data-aos-delay="300">
+              <div class="report-header">
+                <div class="report-meta">
+                  <span class="research-tag">Financial Modeling</span>
+                  <span class="research-tag">Energy</span>
+                  <span class="research-tag">Infrastructure</span>
+                </div>
+                <h3 class="report-title">Renewable Energy Infrastructure: Project Finance & Valuation Framework</h3>
+                <div class="report-date">
+                  <i class="bi bi-calendar3"></i>
+                  Published May 22, 2025
+                </div>
+              </div>
+              
+              <div class="report-content">
+                <p class="report-description">
+                  Advanced financial modeling approach for renewable energy projects, incorporating tax incentives, power purchase agreements, and long-term energy price forecasts. Includes detailed DCF models for solar, wind, and battery storage projects with sensitivity analysis across key variables.
+                </p>
+                
+                <div class="report-highlights">
+                  <h5>Model Features:</h5>
+                  <ul class="mb-0">
+                    <li>IRR analysis across 15+ renewable energy projects</li>
+                    <li>ITC and PTC tax credit optimization strategies</li>
+                    <li>LCOE calculations with degradation factors</li>
+                    <li>Excel model templates included for replication</li>
+                  </ul>
+                </div>
+
+                <div class="pdf-viewer">
+                  <div class="pdf-viewer-header">
+                    <h6 style="margin: 0;">Renewable Energy Valuation Report</h6>
+                    <div class="pdf-controls">
+                      <button onclick="document.getElementById('pdf3').src = document.getElementById('pdf3').src">Refresh</button>
+                      <button onclick="window.open('assets/reports/renewable-energy-report.pdf')">Full Screen</button>
+                    </div>
+                  </div>
+                  <iframe id="pdf3" src="assets/reports/renewable-energy-report.pdf" type="application/pdf"></iframe>
+                </div>
+                
+                <div class="report-actions">
+                  <div class="action-buttons">
+                    <a href="https://www.adobe.com/support/products/enterprise/knowledgecenter/media/c4611_sample_explain.pdf" target="_blank" class="btn-open">
+                      <i class="bi bi-box-arrow-up-right"></i>
+                      Open Report
+                    </a>
+                    <a href="assets/reports/renewable-energy-report.pdf" class="btn-download" download>
+                      <i class="bi bi-download"></i>
+                      Download PDF
+                    </a>
+                  </div>
+                  <div class="report-stats">
+                    <span class="stat-item">
+                      <i class="bi bi-file-earmark-pdf"></i>
+                      58 pages
+                    </span>
+                    <span class="stat-item">
+                      <i class="bi bi-calculator"></i>
+                      Excel Models
+                    </span>
+                    <span class="stat-item">
+                      <i class="bi bi-download"></i>
+                      342 downloads
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Research Report 4 -->
+            <div class="research-report" data-aos="fade-up" data-aos-delay="400">
+              <div class="report-header">
+                <div class="report-meta">
+                  <span class="research-tag">Market Research</span>
+                  <span class="research-tag">Consumer</span>
+                  <span class="research-tag">E-commerce</span>
+                </div>
+                <h3 class="report-title">E-Commerce Evolution: Post-Pandemic Growth Trajectories</h3>
+                <div class="report-date">
+                  <i class="bi bi-calendar3"></i>
+                  Published April 18, 2025
+                </div>
+              </div>
+              
+              <div class="report-content">
+                <p class="report-description">
+                  Comprehensive analysis of e-commerce market dynamics, consumer behavior shifts, and investment opportunities in digital retail infrastructure. Examines the sustainability of pandemic-driven growth and identifies emerging trends in social commerce, same-day delivery, and omnichannel retail.
+                </p>
+                
+                <div class="report-highlights">
+                  <h5>Research Insights:</h5>
+                  <ul class="mb-0">
+                    <li>E-commerce penetration stabilizing at 21% of total retail sales</li>
+                    <li>Last-mile delivery costs declining 15% annually through automation</li>
+                    <li>Social commerce growing 35% YoY driven by Gen Z adoption</li>
+                    <li>Investment opportunities in logistics REITs and fulfillment technology</li>
+                  </ul>
+                </div>
+
+                <div class="pdf-viewer">
+                  <div class="pdf-viewer-header">
+                    <h6 style="margin: 0;">E-Commerce Trends Report</h6>
+                    <div class="pdf-controls">
+                      <button onclick="document.getElementById('pdf4').src = document.getElementById('pdf4').src">Refresh</button>
+                      <button onclick="window.open('assets/reports/ecommerce-trends-report.pdf')">Full Screen</button>
+                    </div>
+                  </div>
+                  <iframe id="pdf4" src="assets/reports/ecommerce-trends-report.pdf" type="application/pdf"></iframe>
+                </div>
+                
+                <div class="report-actions">
+                  <div class="action-buttons">
+                    <a href="https://www.adobe.com/support/products/enterprise/knowledgecenter/media/c4611_sample_explain.pdf" target="_blank" class="btn-open">
+                      <i class="bi bi-box-arrow-up-right"></i>
+                      Open Report
+                    </a>
+                    <a href="assets/reports/ecommerce-trends-report.pdf" class="btn-download" download>
+                      <i class="bi bi-download"></i>
+                      Download PDF
+                    </a>
+                  </div>
+                  <div class="report-stats">
+                    <span class="stat-item">
+                      <i class="bi bi-file-earmark-pdf"></i>
+                      39 pages
+                    </span>
+                    <span class="stat-item">
+                      <i class="bi bi-graph-up-arrow"></i>
+                      Trend Analysis
+                    </span>
+                    <span class="stat-item">
+                      <i class="bi bi-download"></i>
+                      156 downloads
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="row mt-5">
+          <div class="col-lg-8 mx-auto text-center" data-aos="fade-up" data-aos-delay="500">
+            <div class="research-report" style="background: linear-gradient(135deg, rgba(var(--accent-color-rgb), 0.05) 0%, rgba(var(--accent-color-rgb), 0.1) 100%);">
+              <div class="report-content text-center">
+                <h3 style="color: var(--accent-color); font-weight: 700;">Ready to Contribute?</h3>
+                <p class="lead" style="color: #666;">Join our team of student analysts and contribute to professional-grade investment research. We're always looking for motivated students who want to develop real-world finance skills and build their portfolio.</p>
+                <a href="contact.html" class="btn btn-primary btn-lg" style="background: var(--accent-color); border-color: var(--accent-color); padding: 0.75rem 2rem; font-weight: 600;">Apply to Join Our Team</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="footer" class="footer position-relative light-background">
+
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-6 col-md-6 footer-about">
+          <a href="index.html" class="logo d-flex align-items-center">
+            <img src="logo.png" alt="Raritan Research Group" style="height: 30px;">
+          </a>
+          <div class="footer-contact pt-3">
+            <p>Student-Led Investment Research</p>
+            <p class="mt-3"><strong>Email:</strong> <span>contact@raritanresearch.org</span></p>
+          </div>
+          <div class="social-links d-flex mt-4">
+            <a href=""><i class="bi bi-twitter-x"></i></a>
+            <a href=""><i class="bi bi-linkedin"></i></a>
+            <a href=""><i class="bi bi-instagram"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-3 footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="research.html">Research</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="contact.html">Apply</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-3 footer-links">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="research.html">Research Reports</a></li>
+            <li><a href="#">Investment Banking</a></li>
+            <li><a href="#">Equity Research</a></li>
+            <li><a href="#">Financial Modeling</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Raritan Research Group</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">
+        Student-Led Investment Research Excellence
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- vendor js -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+
+  <!-- main js -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

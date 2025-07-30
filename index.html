@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Raritan Research Group - Student-Led Investment Research</title>
+  <meta name="description" content="Student-led investment research firm providing meaningful opportunities to practice essential skills for high-finance careers">
+  <meta name="keywords" content="investment research, finance, student organization, equity research, financial modeling, analysis">
+
+  <!-- Favicons -->
+  <link href="rgfavi.jpg" rel="icon">
+  <link href="rgfavi.jpg" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- vendor files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+
+  <!-- main css -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <!-- custom styling -->
+  <style>
+    /* grey theme variables */
+    :root {
+      --grey-primary: #6c757d;
+      --grey-secondary: #868e96;
+      --grey-light: #f8f9fa;
+      --grey-dark: #495057;
+      --grey-darker: #343a40;
+    }
+
+    /* remove blue background from logo */
+    .header .logo {
+      background: transparent !important;
+      padding: 10px 0 !important;
+    }
+
+    .why-us-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s ease;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      height: 100%;
+    }
+    
+    .why-us-card:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+    
+    .why-us-card .card-image {
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    
+    .why-us-card .card-image img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid var(--grey-primary);
+      transition: transform 0.3s ease;
+    }
+    
+    .why-us-card:hover .card-image img {
+      transform: scale(1.1);
+    }
+    
+    .why-us-card h4 {
+      color: var(--heading-color);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      font-size: 1.25rem;
+    }
+    
+    .why-us-card p {
+      color: var(--default-color);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* override button colors with grey theme */
+    .btn-primary {
+      background-color: var(--grey-primary) !important;
+      border-color: var(--grey-primary) !important;
+      color: white !important;
+    }
+    
+    .btn-primary:hover {
+      background-color: var(--grey-dark) !important;
+      border-color: var(--grey-dark) !important;
+    }
+    
+    .btn-secondary {
+      background-color: transparent !important;
+      border: 2px solid var(--grey-primary) !important;
+      color: var(--grey-primary) !important;
+    }
+    
+    .btn-secondary:hover {
+      background-color: var(--grey-primary) !important;
+      color: white !important;
+    }
+    
+    .btn-event {
+      background-color: var(--grey-primary) !important;
+      color: white !important;
+      border: 2px solid var(--grey-primary) !important;
+    }
+    
+    .btn-event:hover {
+      background-color: var(--grey-dark) !important;
+      border-color: var(--grey-dark) !important;
+    }
+    
+    /* Feature cards with grey accents */
+    .feature-card {
+      background-color: var(--grey-light) !important;
+      border: 1px solid rgba(108, 117, 125, 0.2) !important;
+    }
+    
+    .feature-card.active {
+      background-color: var(--grey-primary) !important;
+      color: white !important;
+    }
+    
+    .feature-card:hover {
+      border-color: var(--grey-primary) !important;
+    }
+
+    .why-join-us {
+      margin-top: 2rem;
+    }
+    .benefits-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .benefit-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      border-radius: 8px;
+      background: rgba(var(--default-color-rgb), 0.05);
+    }
+    .benefit-icon {
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent-color);
+      color: white;
+      border-radius: 50%;
+      font-size: 1.2rem;
+    }
+    .benefit-content h4 {
+      margin: 0 0 0.5rem 0;
+      color: var(--heading-color);
+      font-weight: 600;
+    }
+    .benefit-content p {
+      margin: 0;
+      color: var(--default-color);
+    }
+  </style>
+</head>
+
+<body class="index-page">
+
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-end">
+
+      <a href="index.html" class="logo d-flex align-items-center me-auto">
+        <img src="logo.png" alt="Raritan Research Group" style="height: 60px;">
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="research.html">Research</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section">
+
+      <div class="hero-wrapper">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-6 hero-content" data-aos="fade-right" data-aos-delay="100">
+              <h1>Student-Led Investment Research Excellence</h1>
+              <p>Raritan Research Group is a student-led investment research firm founded in 2025 to provide students with meaningful opportunities to practice essential skills for securing careers in high-finance. Our mission is to give students a platform to not only explore relevant skills such as financial modeling and analysis, but also present it in a formalized fashion.</p>
+              <div class="stats-row">
+                <div class="stat-item">
+                  <span class="stat-number">12</span>
+                  <span class="stat-label">Active Analysts</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-number">2025</span>
+                  <span class="stat-label">Founded</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-number">3+</span>
+                  <span class="stat-label">Industries Covered</span>
+                </div>
+              </div>
+              <div class="action-buttons">
+                <a href="#why-us" class="btn-primary">Learn More</a>
+                <a href="research.html" class="btn-secondary">View Research</a>
+              </div>
+            </div>
+            <div class="col-lg-6 hero-media" data-aos="zoom-in" data-aos-delay="200">
+              <img src="hero.png" alt="Finance Research" class="img-fluid main-image">
+              <div class="image-overlay">
+                <div class="badge-accredited">
+                  <i class="bi bi-graph-up"></i>
+                  <span>Professional Research</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-cards-wrapper" data-aos="fade-up" data-aos-delay="300">
+        <div class="container">
+          <div class="row gy-4">
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+              <div class="feature-card">
+                <div class="feature-icon">
+                  <i class="bi bi-graph-up-arrow"></i>
+                </div>
+                <div class="feature-content">
+                  <h3>Market Analysis</h3>
+                  <p>Deep dive into market movements, trends, and investment opportunities across multiple sectors.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+              <div class="feature-card">
+                <div class="feature-icon">
+                  <i class="bi bi-calculator"></i>
+                </div>
+                <div class="feature-content">
+                  <h3>Financial Modeling</h3>
+                  <p>Advanced DCF analysis and valuation models to determine fair value relative to market price.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+              <div class="feature-card">
+                <div class="feature-icon">
+                  <i class="bi bi-people-fill"></i>
+                </div>
+                <div class="feature-content">
+                  <h3>Professional Network</h3>
+                  <p>Connect with like-minded students pursuing careers in investment banking and equity research.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section><!-- /Hero Section -->
+
+    <!-- Why Us Section -->
+    <section id="why-us" class="why-us section">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        
+        <div class="row">
+          <div class="col-lg-12 text-center mb-4">
+            <h2 class="section-title" style="color: var(--heading-color); font-weight: 700; margin-bottom: 0;">Why Join Us</h2>
+          </div>
+        </div>
+
+        <div class="row gy-4">
+          <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="100">
+            <div class="why-us-card">
+              <div class="card-image">
+                <img src="exposure.png" alt="Exposure" class="img-fluid">
+              </div>
+              <div class="card-content">
+                <h4>Exposure</h4>
+                <p>Gain exposure to real-world skills employed by finance professionals including DCF modeling, equity research, and market analysis techniques used in top investment firms.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="200">
+            <div class="why-us-card">
+              <div class="card-image">
+                <img src="community.png" alt="Community" class="img-fluid">
+              </div>
+              <div class="card-content">
+                <h4>Community</h4>
+                <p>Join a supportive community of like-minded students pursuing careers in investment banking, equity research, and asset management. Build lasting professional networks.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="300">
+            <div class="why-us-card">
+              <div class="card-image">
+                <img src="experience.png" alt="Experience" class="img-fluid">
+              </div>
+              <div class="card-content">
+                <h4>Experience</h4>
+                <p>Work across industries to create impactful research that gets noticed. Build a portfolio of professional-grade work that sets you apart in recruiting processes.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /Why Us Section -->
+
+  </main>
+
+  <footer id="footer" class="footer position-relative light-background">
+
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-6 col-md-6 footer-about">
+          <a href="index.html" class="logo d-flex align-items-center">
+            <img src="logo.png" alt="Raritan Research Group" style="height: 30px;">
+          </a>
+          <div class="footer-contact pt-3">
+            <p>Student-Led Investment Research</p>
+            <p class="mt-3"><strong>Email:</strong> <span>contact@raritanresearch.org</span></p>
+          </div>
+          <div class="social-links d-flex mt-4">
+            <a href=""><i class="bi bi-twitter-x"></i></a>
+            <a href=""><i class="bi bi-linkedin"></i></a>
+            <a href=""><i class="bi bi-instagram"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-3 footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="research.html">Research</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="contact.html">Apply</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-3 footer-links">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="research.html">Research Reports</a></li>
+            <li><a href="#">Investment Banking</a></li>
+            <li><a href="#">Equity Research</a></li>
+            <li><a href="#">Financial Modeling</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Raritan Research Group</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">
+        Student-Led Investment Research Excellence
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- vendor js -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+
+  <!-- main js -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
